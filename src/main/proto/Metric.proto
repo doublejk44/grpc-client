@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.nkia.ias";
+option java_outer_classname = "MetricProto";
+
+service MetricService {
+  rpc MetricStreamHandler (stream MetricRequest) returns (MetricResponse) {} //client side
+  rpc MetricHandler (MetricRequest) returns (MetricResponse) {}
+}
+
+message MetricRequest {
+  int64 resourceId = 1;
+  int64 metricId = 2;
+  string metricName = 3;
+  string metricType = 4;
+  string metricUnit = 5;
+  int64 time = 6;
+  double value = 7;
+}
+
+message MetricResponse {
+  string message = 1;
+}
